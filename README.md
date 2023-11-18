@@ -1,7 +1,15 @@
-# Wheather App
+# the.weather: Weather App
 
-## Learning outcomes from building this application:
-I built this project using HTML CSS & JavaScript.<br/>
-I’ve used OpenWeatherMap API to get the weather details of the user entered city<br/> or user’s current location.<br/>
+Search a location for forecast data.
 
-### live demo https://mphojames9.github.io/weather-app/
+- Display daily or hourly forecast data for a given location.
+- Display data in metric or imperial units.
+- Unique weather symbols for each forecast description.
+
+Feature ideas to implement.
+
+- Display user location by default.
+
+[Live App](https://bscottnz.github.io/weather-app/)
+
+![alt text](https://raw.githubusercontent.com/bscottnz/weather-app/main/weather.png "App Preview")
