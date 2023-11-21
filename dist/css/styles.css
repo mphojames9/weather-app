@@ -51,6 +51,7 @@ body {
   grid-area: logo;
   font-size: 32px;
   color: var(--white);
+  color: blue;
   text-decoration: none;
 }
 
