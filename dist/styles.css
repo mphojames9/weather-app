@@ -92,6 +92,7 @@ body .logo {
   font-weight: 600;
   color: rgb(228, 225, 221);
   font-family: 'Times New Roman', Times, serif;
+  text-shadow: 2px 2px 2px black;
 }
 .weather-data h6 {
   margin-top: 12px;
@@ -128,6 +129,10 @@ body .logo {
   list-style: none;
   width: calc(100% / 5);
   border-radius: 5px;
+  margin: 1em;
+  border: 1px solid white;
+  text-align: center;
+  box-shadow: 3px 3px 3px black;
 }
 .weather-cards .card h3 {
   font-size: 1.3rem;
