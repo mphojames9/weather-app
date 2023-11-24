@@ -10,12 +10,18 @@ body {
   background: linear-gradient(to top right, rgb(32, 236, 236), blue);
   background-attachment: fixed;
 }
-h1 {
-  font-size: 1.75rem;
-  text-align: center;
-  padding: 18px 0;
-  color: #fff;
+
+body .logo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
+
+.logo img {
+  width: 275px;
+  height: 120px;
+ }
+
 .container {
   display: flex;
   gap: 35px;
@@ -68,6 +74,13 @@ h1 {
 .current-weather h2 {
   font-weight: 700;
   font-size: 1.7rem;
+}
+
+#main-temp {
+  font-size: 3.5em;
+  font-weight: 600;
+  color: rgb(228, 225, 221);
+  font-family: 'Times New Roman', Times, serif;
 }
 .weather-data h6 {
   margin-top: 12px;

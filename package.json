@@ -1,14 +1,18 @@
 {
-  "name": "alx-weather-app",
+  "name": "weather-app",
   "version": "1.0.0",
-  "description": "alx-potfolio-project",
-  "main": "main.js",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Mpho Matli",
-  "license": "ISC",
-  "dependencies": {
-    "lodash": "^4.17.21"
-  }
+  "author": "",
+  "license": "ISC"
 }
