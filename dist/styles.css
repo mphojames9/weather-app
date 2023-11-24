@@ -12,12 +12,14 @@ body {
   text-shadow: 1px 1px 1px black;
   background-color: rgba(46, 120, 143, 0.699);
   background-blend-mode: multiply;
+  position: relative;
 }
 
 body .logo {
   width: 100%;
   display: flex;
   justify-content: center;
+
 }
 
 .logo img {
@@ -134,6 +136,19 @@ body .logo {
 .weather-cards .card img {
   max-width: 70px;
   margin: 5px 0 -12px 0;
+}
+
+footer {
+  width: 100%;
+  height: fit-content;
+  background-color: black;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.363);
+  padding: 3.5px;
+  position: fixed;
+  bottom: 0;
+  font-size: .8em;
+  display: none;
 }
 
 @media (max-width: 1400px) {
