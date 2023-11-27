@@ -68,6 +68,11 @@ body .logo {
   background-color: black;
 }
 
+.weather-input button:hover {
+  color: green;
+  /* scale: 1.01; */
+}
+
 .weather-input .location-btn {
   background-color: black;
 }
