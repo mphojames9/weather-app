@@ -70,7 +70,7 @@ body .logo {
 
 .weather-input button:hover {
   color: green;
-  /* scale: 1.01; */
+  scale: 1.01;
 }
 
 .weather-input .location-btn {
