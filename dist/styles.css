@@ -87,12 +87,16 @@ body .logo {
   font-size: 1.7rem;
 }
 
+span {
+  color: orangered;
+}
+
 #main-temp {
   font-size: 3.5em;
   font-weight: 600;
-  color: rgb(228, 225, 221);
+  color: rgb(255, 255, 255);
   font-family: 'Times New Roman', Times, serif;
-  text-shadow: 2px 2px 2px black;
+  text-shadow: 2px 2px 2px orangered;
 }
 .weather-data h6 {
   margin-top: 12px;
@@ -122,6 +126,7 @@ body .logo {
 .days-forecast .weather-cards {
   display: flex;
   gap: 20px;
+  justify-content: center;
 }
 .weather-cards .card {
   color: #fff;
@@ -143,17 +148,25 @@ body .logo {
   margin: 5px 0 -12px 0;
 }
 
-footer {
-  width: 100%;
+.error_text {
+  min-width: fit-content;
+  max-width: 130px;
+  min-height: 15px;
   height: fit-content;
-  background-color: black;
+  background-color: rgba(255, 0, 0, 0.87);
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 2em;
+  color: white;
   text-align: center;
-  color: rgba(255, 255, 255, 0.363);
-  padding: 3.5px;
-  position: fixed;
-  bottom: 0;
-  font-size: .8em;
-  display: none;
+  padding: 10px;
+  transition: 350ms;
+  opacity: 0;
+}
+
+.visible {
+  opacity: 1;
 }
 
 @media (max-width: 1400px) {

@@ -3,13 +3,21 @@ const searchButton = document.querySelector(".search-btn");
 const locationButton = document.querySelector(".location-btn");
 const currentWeatherDiv = document.querySelector(".current-weather");
 const weatherCardsDiv = document.querySelector(".weather-cards");
+const errorDisplay = document.querySelector(".error_text");
+const daysOfWeek = [
+    'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
+  ];
+
+     const now = new Date();
+     const dayOfWeek = daysOfWeek[now.getDay()];
 
 const API_KEY = "c93fd1817f3fbe42aeac0a63076603b9";
 
 const createWeatherCard = (cityName, weatherItem, index) => {
     if(index === 0) { 
         return `<div class="details">
-                    <h2>${cityName} (${weatherItem.dt_txt.split(" ")[0]})</h2>
+                    <h2>${dayOfWeek} <span>|</span> ${weatherItem.dt_txt.split(" ")[0]}</h2>
+                    <h2>${cityName}</h2>
                     <h6 id="main-temp">${(weatherItem.main.temp - 273.15).toFixed(2)}°C</h6>
                     <h6>Feels Like: ${(weatherItem.main.feels_like - 273.15).toFixed(2)}°C</h6>
                     <h6>Wind: ${weatherItem.wind.speed} M/S</h6>
@@ -21,7 +29,7 @@ const createWeatherCard = (cityName, weatherItem, index) => {
                 </div>`;
     } else { 
         return `<li class="card">
-                    <h3>(${weatherItem.dt_txt.split(" ")[0]})</h3>
+                    <h3>${weatherItem.dt_txt.split(" ")[0]}</h3>
                     <img src="https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}@4x.png" alt="weather-icon">
                     <h6>Temp: ${(weatherItem.main.temp - 273.15).toFixed(2)}°C</h6>
                     <h6>Wind: ${weatherItem.wind.speed} M/S</h6>
@@ -64,11 +72,11 @@ const getCityCoordinates = () => {
     const API_URL = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${API_KEY}`;
     
     fetch(API_URL).then(response => response.json()).then(data => {
-        if (!data.length) return alert(`No coordinates found for ${cityName}`);
+        if (!data.length) return noCoordinates();
         const { lat, lon, name } = data[0];
         getWeatherDetails(name, lat, lon);
     }).catch(() => {
-        alert("An error occurred while fetching the coordinates!");
+        getCityCoordinatesError();
     });
 }
 
@@ -81,14 +89,14 @@ const getUserCoordinates = () => {
                 const { name } = data[0];
                 getWeatherDetails(name, latitude, longitude);
             }).catch(() => {
-                alert("An error occurred while fetching the city name!");
+                getCityNameError();
             });
         },
         error => {
             if (error.code === error.PERMISSION_DENIED) {
-                alert("Geolocation request denied. Please reset location permission to grant access again.");
+                requestPermissionDenied();
             } else {
-                alert("Geolocation request error. Please reset location permission.");
+                geoRequestDenied();
             }
         });
 }
@@ -96,3 +104,23 @@ const getUserCoordinates = () => {
 getUserCoordinates();
 searchButton.addEventListener("click", getCityCoordinates);
 cityInput.addEventListener("keyup", e => e.key === "Enter" && getCityCoordinates());
+
+function getCityCoordinatesError(){
+    alert("An error occurred while fetching the coordinates!");
+}
+
+function getCityNameError(){
+    alert("An error occurred while fetching the city name!");
+}
+
+function requestPermissionDenied(){
+    alert("Geolocation request denied. Please reset location permission to grant access again");
+}
+
+function geoRequestDenied(){
+    alert("Geolocation request error. Please reset location permission.");
+}
+
+function noCoordinates(){
+    alert(`No coordinates found for ${cityName}`)
+}
