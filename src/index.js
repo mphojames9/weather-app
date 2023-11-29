@@ -4,16 +4,18 @@ const locationButton = document.querySelector(".location-btn");
 const currentWeatherDiv = document.querySelector(".current-weather");
 const weatherCardsDiv = document.querySelector(".weather-cards");
 const errorDisplay = document.querySelector(".error_text");
-const daysOfWeek = [
-    'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
-  ];
 
-     const now = new Date();
-     const dayOfWeek = daysOfWeek[now.getDay()];
 
 const API_KEY = "c93fd1817f3fbe42aeac0a63076603b9";
 
 const createWeatherCard = (cityName, weatherItem, index) => {
+    const daysOfWeek = [
+        'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
+      ];
+    
+         const now = new Date();
+         const dayOfWeek = daysOfWeek[now.getDay()];
+         
     if(index === 0) { 
         return `<div class="details">
                     <h2>${dayOfWeek} <span>|</span> ${weatherItem.dt_txt.split(" ")[0]}</h2>
