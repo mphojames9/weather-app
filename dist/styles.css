@@ -94,6 +94,7 @@ body .logo {
 
 span {
   color: orangered;
+  margin-top: 10px;
 }
 
 #main-temp {
@@ -102,6 +103,14 @@ span {
   color: rgb(255, 255, 255);
   font-family: 'Times New Roman', Times, serif;
   text-shadow: 2px 2px 2px orangered;
+}
+
+.min_max {
+  display: flex;
+  width: 150px;
+  font-weight: 900;
+  justify-content: space-between;
+  text-shadow: 1px 1px rgba(255, 68, 0, 0.562);
 }
 .weather-data h6 {
   margin-top: 12px;
@@ -223,6 +232,10 @@ span {
   .weather-data .current-weather {
     display: inline;
     text-align: center;
+  }
+
+  .min_max {
+    margin: 0 auto;
   }
 }
 
