@@ -10,7 +10,7 @@ body {
   background-image: url("images/pexels-pixabay-209831.jpg");
   background-size: cover;
   text-shadow: 1px 1px 1px black;
-  background-color: rgba(46, 120, 143, 0.699);
+  background-color: rgb(10, 51, 63);
   background-blend-mode: multiply;
   position: relative;
 }
@@ -117,6 +117,13 @@ span {
   font-size: 1rem;
   font-weight: 500;
 }
+
+.sunset_sunrise {
+  letter-spacing: 2px;
+  text-shadow: 3px 1px 1px orangered;
+  border-right:3px solid orangered ;
+}
+
 .current-weather .icon {
   text-align: center;
 }

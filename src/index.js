@@ -14,18 +14,28 @@ const daysOfWeek = [
 
 const API_KEY = "c93fd1817f3fbe42aeac0a63076603b9";
 
-const createWeatherCard = (cityName, sunrise_sunset, weatherItem, index) => {
+const createWeatherCard = (cityName, _sunrise,_sunset, weatherItem, index) => {
     if(index === 0) { 
-        function convertTimestamptoTime() {
+        function convertTimestamptoTime_sunrise() {
 
-            let unixTimestamp = sunrise_sunset;
+            let unixTimestamp = _sunrise;
             let dateObj = new Date(unixTimestamp * 1000);
             let utcString = dateObj.toUTCString();
          
             let time = utcString.slice(-11, -4);
             return time;
         }
-       const sunset = convertTimestamptoTime();
+        function convertTimestamptoTime_sunset() {
+
+            let unixTimestamp = _sunset;
+            let dateObj = new Date(unixTimestamp * 1000);
+            let utcString = dateObj.toUTCString();
+         
+            let time = utcString.slice(-11, -4);
+            return time;
+        }
+       const sunrise = convertTimestamptoTime_sunrise();
+       const sunset = convertTimestamptoTime_sunset();
 
         return `<div class="details">
                     <h2>${dayOfWeek} <span>|</span> ${weatherItem.dt_txt.split(" ")[0]}</h2>
@@ -39,7 +49,8 @@ const createWeatherCard = (cityName, sunrise_sunset, weatherItem, index) => {
                     <h6>Feels Like: ${(weatherItem.main.feels_like - 273.15).toFixed(2)}°C</h6>
                     <h6>Wind: ${weatherItem.wind.speed} M/S</h6>
                     <h6>Visibility: ${weatherItem.visibility / 100} KM</h6>
-                    <h6>Sunrise: ${sunset} </h6>
+                    <h6 class="sunset_sunrise">Sunrise: ${sunset} </h6>
+                    <h6 class="sunset_sunrise">Sunset: ${sunrise} </h6>
                 </div>
                 <div class="icon">
                     <img src="https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}@4x.png" alt="weather-icon">
@@ -61,7 +72,8 @@ const getWeatherDetails = (cityName, latitude, longitude) => {
     const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
 
     fetch(WEATHER_API_URL).then(response => response.json()).then(data => {
-        const sunrise_sunset = data.city.sunrise;
+        const _sunrise = data.city.sunrise;
+        const _sunset = data.city.sunset;
         const uniqueForecastDays = [];
         const fiveDaysForecast = data.list.filter(forecast => {
             const forecastDate = new Date(forecast.dt_txt).getDate();
@@ -75,7 +87,7 @@ const getWeatherDetails = (cityName, latitude, longitude) => {
         weatherCardsDiv.innerHTML = "";
 
         fiveDaysForecast.forEach((weatherItem, index) => {
-            const html = createWeatherCard(cityName, sunrise_sunset, weatherItem, index);
+            const html = createWeatherCard(cityName, _sunrise, _sunset, weatherItem, index);
             if (index === 0) {
                 currentWeatherDiv.insertAdjacentHTML("beforeend", html);
             } else {
