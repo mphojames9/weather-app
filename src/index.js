@@ -31,13 +31,16 @@ const createWeatherCard = (cityName, _sunset,_sunrise, weatherItem, index) => {
 
             function convertTimestamptoTime_sunset() {
 
-            let unixTimestamp = _sunset;
-            let dateObj = new Date(unixTimestamp * 1000);
-            let utcString = dateObj.toUTCString();
-         
-            let time = utcString.slice(-11, -4);
-            return time;
-        }
+                let unix_timeStamp = _sunset;//converting seconds to milliseconds
+                let date = new Date(unix_timeStamp * 1000);
+                let hours = date.getHours();
+                let minutes = "0" + date.getMinutes();
+                let seconds = "0" + date.getSeconds();
+                
+                // Will display time in 11:32:23 format
+                let formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+                return formattedTime
+                }
        const sunrise = convertTimestamptoTime_sunrise();
        const sunset = convertTimestamptoTime_sunset();
 
@@ -77,8 +80,8 @@ const getWeatherDetails = (cityName, latitude, longitude) => {
 
     fetch(WEATHER_API_URL).then(response => response.json()).then(data => {
         console.log(data.city)
-        const _sunrise = data.city.sunrise;
-        const _sunset = data.city.sunset;
+        const _sunrise = data.city.sunset;
+        const _sunset = data.city.sunrise;
         const uniqueForecastDays = [];
         const fiveDaysForecast = data.list.filter(forecast => {
             const forecastDate = new Date(forecast.dt_txt).getDate();
