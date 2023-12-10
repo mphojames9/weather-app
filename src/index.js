@@ -14,7 +14,7 @@ const daysOfWeek = [
 
 const API_KEY = "c93fd1817f3fbe42aeac0a63076603b9";
 
-const createWeatherCard = (cityName, _sunrise,_sunset, weatherItem, index) => {
+const createWeatherCard = (cityName, _sunset,_sunrise, weatherItem, index) => {
     if(index === 0) { 
         function convertTimestamptoTime_sunrise() {
 
@@ -31,17 +31,13 @@ const createWeatherCard = (cityName, _sunrise,_sunset, weatherItem, index) => {
 
             function convertTimestamptoTime_sunset() {
 
-                let unix_timeStamp = _sunset;//converting seconds to milliseconds
-                let date = new Date(unix_timeStamp * 1000);
-                let hours = date.getHours();
-                let minutes = "0" + date.getMinutes();
-                let seconds = "0" + date.getSeconds();
-                
-                // Will display time in 11:32:23 format
-                let formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-                return formattedTime
-                }
-
+            let unixTimestamp = _sunset;
+            let dateObj = new Date(unixTimestamp * 1000);
+            let utcString = dateObj.toUTCString();
+         
+            let time = utcString.slice(-11, -4);
+            return time;
+        }
        const sunrise = convertTimestamptoTime_sunrise();
        const sunset = convertTimestamptoTime_sunset();
 
