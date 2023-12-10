@@ -18,22 +18,30 @@ const createWeatherCard = (cityName, _sunrise,_sunset, weatherItem, index) => {
     if(index === 0) { 
         function convertTimestamptoTime_sunrise() {
 
-            let unixTimestamp = _sunrise;
-            let dateObj = new Date(unixTimestamp * 1000);
-            let utcString = dateObj.toUTCString();
-         
-            let time = utcString.slice(-11, -4);
-            return time;
-        }
-        function convertTimestamptoTime_sunset() {
+            let unix_timeStamp = _sunrise;//converting seconds to milliseconds
+            let date = new Date(unix_timeStamp * 1000);
+            let hours = date.getHours();
+            let minutes = "0" + date.getMinutes();
+            let seconds = "0" + date.getSeconds();
+            
+            // Will display time in 11:32:23 format
+            let formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+            return formattedTime
+            }
 
-            let unixTimestamp = _sunset;
-            let dateObj = new Date(unixTimestamp * 1000);
-            let utcString = dateObj.toUTCString();
-         
-            let time = utcString.slice(-11, -4);
-            return time;
-        }
+            function convertTimestamptoTime_sunset() {
+
+                let unix_timeStamp = _sunset;//converting seconds to milliseconds
+                let date = new Date(unix_timeStamp * 1000);
+                let hours = date.getHours();
+                let minutes = "0" + date.getMinutes();
+                let seconds = "0" + date.getSeconds();
+                
+                // Will display time in 11:32:23 format
+                let formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+                return formattedTime
+                }
+
        const sunrise = convertTimestamptoTime_sunrise();
        const sunset = convertTimestamptoTime_sunset();
 
@@ -49,8 +57,8 @@ const createWeatherCard = (cityName, _sunrise,_sunset, weatherItem, index) => {
                     <h6>Feels Like: ${(weatherItem.main.feels_like - 273.15).toFixed(2)}°C</h6>
                     <h6>Wind: ${weatherItem.wind.speed} M/S</h6>
                     <h6>Visibility: ${weatherItem.visibility / 100} KM</h6>
-                    <h6 class="sunset_sunrise">Sunrise: ${sunset} </h6>
-                    <h6 class="sunset_sunrise">Sunset: ${sunrise} </h6>
+                    <h6 class="sunset_sunrise">Sunrise:  ${sunrise}</h6>
+                    <h6 class="sunset_sunrise">Sunset:  ${sunset}</h6>
                 </div>
                 <div class="icon">
                     <img src="https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}@4x.png" alt="weather-icon">
@@ -72,6 +80,7 @@ const getWeatherDetails = (cityName, latitude, longitude) => {
     const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
 
     fetch(WEATHER_API_URL).then(response => response.json()).then(data => {
+        console.log(data.city)
         const _sunrise = data.city.sunrise;
         const _sunset = data.city.sunset;
         const uniqueForecastDays = [];

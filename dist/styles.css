@@ -9,8 +9,9 @@
 body {
   background-image: url("images/pexels-pixabay-209831.jpg");
   background-size: cover;
+  background-attachment: fixed;
   text-shadow: 1px 1px 1px black;
-  background-color: rgb(10, 51, 63);
+  background-color: rgba(10, 51, 63, 0.548);
   background-blend-mode: multiply;
   position: relative;
 }
@@ -153,10 +154,11 @@ span {
   color: #fff;
   padding: 18px 16px;
   list-style: none;
+  min-width: 250px;
   width: calc(100% / 5);
   border-radius: 5px;
   margin: 1em;
-  border: 1px solid white;
+  border: 1px solid rgba(255, 68, 0, 0.404);
   text-align: center;
   box-shadow: 3px 3px 3px black;
 }
