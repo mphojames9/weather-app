@@ -13,7 +13,7 @@
   <p align="center">
     Weather application used to show forecast from OpenWeather API.
     <br />
-    <a href="https://artis-dev.github.io/weather-app/"><strong>View Demo</strong></a>
+    <a href="https://weather-app-5e29.onrender.com/"><strong>View Demo</strong></a>
   </p>
 </div>
 
