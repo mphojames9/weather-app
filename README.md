@@ -5,7 +5,7 @@
 <br />
 <div align="center">
   <a href="#">
-    <img src="https://user-images.githubusercontent.com/20213395/160851688-6903b15b-418f-4ef9-baf8-d2de8389b554.png" alt="Logo" width="100" height="100">
+    <img src="screenshots/OpenWeather-Logo.jpg" alt="Logo" width="200" height="100">
   </a>
 
 <h3 align="center">Weather app</h3>
